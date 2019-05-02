@@ -29,26 +29,6 @@ body {
   display: flex;
   overflow: hidden;
 
-  header {
-    padding: 4rem 2rem 2rem;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-
-    > div {
-      padding-top: 2rem;
-      padding-left: 2rem;
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-    }
-  }
-
-  p {
-    color: rgba(#070E14, 0.5);
-    line-height: 1.45;
-  }
-
   canvas {
     width: 100%;
     height: 100%;
@@ -59,20 +39,5 @@ body {
     z-index: -1;
 
     transform: translate(-50%, -50%);
-  }
-}
-
-button {
-  display: inline-block;
-  padding: 0;
-  background: none;
-  border: none;
-  color: rgba(#070E14, 0.3);
-  font-size: 12px;
-  margin-right: .1em;
-  cursor: pointer;
-
-  &:hover {
-    color: #ff5507
   }
 }

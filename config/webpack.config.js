@@ -20,9 +20,7 @@ module.exports = {
     devtool: 'source-map',
     resolve: {
         alias: {
-            '@' : path.resolve(__dirname, '../src'),
-            'components' : path.resolve(__dirname, '../src/components'),
-            'util' : path.resolve(__dirname, '../src/util'),
+            '@' : path.resolve(__dirname, '../src')
         }
     },
     module: {
@@ -33,7 +31,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env']
+                        presets: ['@babel/preset-env']
                     }
                 }
             },
@@ -48,13 +46,13 @@ module.exports = {
                         options: {
                             importLoaders: 1,
                             url: false,
-                            sourceMap: env !== 'prod'
+                            sourceMap: env !== 'production'
                         }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: env !== 'prod'
+                            sourceMap: env !== 'production'
                         }
                     },
                 ]
