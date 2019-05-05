@@ -13,9 +13,19 @@ export default class ParticleLines extends AbstractParticleBase {
     return super.init();
   }
 
+  update(scrollDirection) {
+    if(scrollDirection) {
+      this.space += .05 * scrollDirection;
+    }
+
+    super.update(scrollDirection);
+  }
+
   draw () {
+    const {x, y} = this.getCoords();
     const context = this.getContext();
 
+    context.translate(x, y);
     context.lineWidth = this.strokeWeight;
     context.strokeStyle = this.color.rgba;
     context.rotate(-45);

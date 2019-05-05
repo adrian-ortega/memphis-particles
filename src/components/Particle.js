@@ -22,7 +22,7 @@ export default class Particle {
 
     // Only moves up and down
     this.velocity = new Vector(
-      0, // Math.random() * getRandomFromRange(0.1, 1.5, 0.1),
+      0, //Math.random() * getRandomFromRange(0.1, 1.5, 0.1),
       Math.random() * getRandomFromRange(0.1, 2.5, 0.1)
     );
 
@@ -51,7 +51,6 @@ export default class Particle {
    */
   draw () {
     this.context.save();
-    this.context.translate(this.coords.x, this.coords.y);
     this.particle.draw();
     this.context.restore();
   }

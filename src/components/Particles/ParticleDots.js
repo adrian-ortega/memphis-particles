@@ -62,6 +62,7 @@ class ParticleDots extends AbstractParticleBase {
       {x: d5, y: d5},
     ];
 
+    context.translate(x, y);
     context.fillStyle = this.color.hex;
     context.rotate(this.angle);
     points.forEach(({x, y}) => {

@@ -1,11 +1,17 @@
 import AbstractParticleBase from '@/components/Particles/AbstractParticleBase'
 import {getRandomFromArray, getRandomFromRange} from '@/util'
 
-export default class ParticleCircle extends AbstractParticleBase {
+class ParticleCircle extends AbstractParticleBase {
   init () {
     this.type = getRandomFromArray(['solid', 'outline']);
     this.strokeWeight = getRandomFromRange(10, 30);
-    this.diameter = getRandomFromRange(10, 90);
+    this.diameter = getRandomFromRange(10, 100);
+
+    if(this.type === 'solid' && ParticleCircle.largeCount < 3) {
+      this.diameter = getRandomFromRange(3000, 5000, 500);
+      this.setColor('#ffffff', getRandomFromRange(.1, .5, .125));
+      ParticleCircle.largeCount++;
+    }
 
     return super.init();
   }
@@ -14,6 +20,7 @@ export default class ParticleCircle extends AbstractParticleBase {
     const {x, y} = this.getCoords()
     const context = this.getContext();
 
+    context.translate(x, y);
     context.lineWidth = this.strokeWeight;
     context.beginPath();
 
@@ -32,3 +39,7 @@ export default class ParticleCircle extends AbstractParticleBase {
     }
   }
 }
+
+ParticleCircle.largeCount = 0;
+
+export default ParticleCircle;

@@ -32,6 +32,7 @@ export default class ParticleCross extends AbstractParticleBase
       {x: w, y: 0},
     ];
 
+    context.translate(x, y);
     context.fillStyle = this.color.hex;
     context.rotate(this.angle);
     context.beginPath();

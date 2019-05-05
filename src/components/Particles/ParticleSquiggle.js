@@ -1,10 +1,10 @@
 import AbstractParticleBase from '@/components/Particles/AbstractParticleBase';
-import {getRandomFromArray} from '@/util';
+import {getRandomFromArray, getRandomFromRange} from '@/util';
 
 export default class ParticleSquiggle extends AbstractParticleBase
 {
   init() {
-    this.size = getRandomFromArray([.3, .4, .5, .6, .7, .8])
+    this.size = getRandomFromRange(0.1, 1, .1)
     this.width = 100 * this.size;
     this.height = 100 * this.size;
     this.type = getRandomFromArray([
@@ -13,6 +13,18 @@ export default class ParticleSquiggle extends AbstractParticleBase
     ]);
 
     return super.init();
+  }
+
+  update(scrollDirection) {
+    if(scrollDirection && this.clockwise) {
+      this.angle += .008 * scrollDirection;
+    }
+
+    if(scrollDirection && !this.clockwise) {
+      this.angle -= .008 * scrollDirection;
+    }
+
+    super.update(scrollDirection);
   }
 
   draw () {
@@ -66,9 +78,11 @@ export default class ParticleSquiggle extends AbstractParticleBase
     }
 
     context.fillStyle = this.color.hex;
+    context.translate(x + (this.width * 0.5), y + (this.height * 0.5));
     context.rotate(this.angle);
-    context.beginPath();
+
     context.moveTo(x, y);
+    context.beginPath();
     points.forEach(({x, y}) => context.lineTo(x, y))
     context.closePath();
     context.fill();

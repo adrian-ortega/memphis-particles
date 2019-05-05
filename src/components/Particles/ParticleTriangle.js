@@ -1,11 +1,19 @@
 import AbstractParticleBase from '@/components/Particles/AbstractParticleBase'
 import {getRandomFromRange} from '@/util'
 
-export default class ParticleTriangle extends AbstractParticleBase {
+class ParticleTriangle extends AbstractParticleBase {
   init() {
     this.size = getRandomFromRange(.1, .8, .05)
     this.width = 180 * this.size;
     this.height = 180 * this.size;
+
+    if(ParticleTriangle.largeCount < 4) {
+      const tmpSize = getRandomFromRange(3000, 5000, 500);
+      this.width = tmpSize;
+      this.height = tmpSize;
+      this.alpha = getRandomFromRange(.1, .5, .125);
+      ParticleTriangle.largeCount++;
+    }
 
     return super.init();
   }
@@ -23,10 +31,7 @@ export default class ParticleTriangle extends AbstractParticleBase {
       {x: 0, y: h},
     ];
 
-    if(this.alpha !== 1) {
-      context.globalAlpha = this.alpha;
-    }
-
+    context.translate(x, y);
     context.fillStyle = this.color.hex;
     context.rotate(this.angle);
     context.beginPath();
@@ -38,3 +43,7 @@ export default class ParticleTriangle extends AbstractParticleBase {
     context.fill();
   }
 }
+
+ParticleTriangle.largeCount = 0;
+
+export default ParticleTriangle

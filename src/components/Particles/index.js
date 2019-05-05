@@ -5,6 +5,7 @@ import ParticleTriangle from '@/components/Particles/ParticleTriangle'
 import ParticleLongLine from '@/components/Particles/ParticleLongLine'
 import ParticleLines from '@/components/Particles/ParticleLines'
 import ParticleCircle from '@/components/Particles/ParticleCircle'
+import ParticleFancySquare from '@/components/Particles/ParticleFancySquare'
 
 export const particleTypes = [
   ParticleCross,
@@ -15,6 +16,9 @@ export const particleTypes = [
   ParticleTriangle,
   ParticleTriangle,
   ParticleTriangle,
+  ParticleFancySquare,
+  ParticleFancySquare,
+  ParticleFancySquare,
   ParticleLongLine,
   ParticleLines,
   ParticleCircle,
