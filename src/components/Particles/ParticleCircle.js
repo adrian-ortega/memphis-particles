@@ -5,7 +5,7 @@ export default class ParticleCircle extends AbstractParticleBase {
   init () {
     this.type = getRandomFromArray(['solid', 'outline']);
     this.strokeWeight = getRandomFromRange(10, 30);
-    this.diameter = getRandomFromRange(50, 150);
+    this.diameter = getRandomFromRange(10, 90);
 
     return super.init();
   }
@@ -15,7 +15,6 @@ export default class ParticleCircle extends AbstractParticleBase {
     const context = this.getContext();
 
     context.lineWidth = this.strokeWeight;
-    context.rotate(-45);
     context.beginPath();
 
     context.beginPath();
@@ -23,7 +22,7 @@ export default class ParticleCircle extends AbstractParticleBase {
 
     switch(this.type) {
       case 'solid':
-        context.fillStyle = this.color.hex;
+        context.fillStyle = this.color.rgba;
         context.fill();
         break;
       case 'outline':

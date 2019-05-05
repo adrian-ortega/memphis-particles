@@ -2,7 +2,7 @@
  * @property {Particle} instance
  * @property {Boolean} moves
  */
-import {getRandomFromArray, getRGBAFromHex} from '@/util'
+import {getRandomFromArray, getRandomFromRange, getRGBAFromHex} from '@/util'
 
 export default class AbstractParticleBase {
   /**
@@ -15,7 +15,7 @@ export default class AbstractParticleBase {
     this.strokeWeight = 0;
     this.clockwise = Math.random() < 0.5;
     this.angle = Math.atan2(instance.coords.y, instance.coords.x);
-    this.alpha = 1;
+    this.alpha = getRandomFromRange(.01, 1, .01);
 
     if(this.clockwise) {
       this.angle = -Math.abs(this.angle);
@@ -25,7 +25,7 @@ export default class AbstractParticleBase {
     this.setColor(getRandomFromArray(this.colors));
   }
 
-  setColor(randomColor, alpha = 1) {
+  setColor(randomColor, alpha) {
     if(alpha) {
       this.alpha = alpha;
     }
@@ -63,7 +63,7 @@ export default class AbstractParticleBase {
     if(scrollDirection) {
       const {coords, velocity} = this.instance;
 
-      scrollDirection === 1
+      scrollDirection === -1
         ? coords.increase(velocity)
         : coords.decrease(velocity);
     }

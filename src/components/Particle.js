@@ -23,7 +23,7 @@ export default class Particle {
     // Only moves up and down
     this.velocity = new Vector(
       0, // Math.random() * getRandomFromRange(0.1, 1.5, 0.1),
-      Math.random() * getRandomFromRange(0.1, 1.5, 0.1)
+      Math.random() * getRandomFromRange(0.1, 2.5, 0.1)
     );
 
     let randomParticle = getRandomFromArray(particleTypes)
