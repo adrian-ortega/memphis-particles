@@ -21,18 +21,6 @@ body {
   margin: 0;
 }
 
-#welcome {
-  canvas {
-    width: 100%;
-    height: 100%;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-}
-
 .section {
   min-height: 100vh;
   position: relative;
@@ -41,5 +29,35 @@ body {
 
   &:nth-child(2n+1) {
     background: #dadada;
+  }
+}
+
+#welcome {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    padding: 3rem 8rem;
+    border-radius: .35rem;
+    box-shadow: 0 0 36px 10px rgba(24,24,24, .1);
+
+    h1 {
+      font-size: 5rem;
+      margin: 0;
+      text-transform: uppercase;
+    }
   }
 }
