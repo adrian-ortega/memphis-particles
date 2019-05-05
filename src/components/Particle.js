@@ -1,14 +1,16 @@
-import {types} from '@/components/Particles';
-import {randomFromArray} from '@/util';
+import {particleTypes} from '@/components/Particles';
+import {getRandomFromArray, getRandomFromRange} from '@/util';
 import Vector from '@/components/Vector'
 
 export default class Particle {
 
   /**
-   * @param {HTMLCanvasElement} canvas
+   * @param {HTMLCanvasElement|Node} canvas
    * @param {CanvasRenderingContext2D} context
+   * @param {number} index
    */
-  constructor (canvas, context) {
+  constructor (canvas, context, index = 0) {
+    this.index = index;
     this.canvas = canvas
     this.context = context
 
@@ -18,40 +20,40 @@ export default class Particle {
       Math.round(Math.random() * this.canvas.height)
     );
 
-    const randomParticle = randomFromArray(types)
+    // Only moves up and down
+    this.velocity = new Vector(
+      0, // Math.random() * getRandomFromRange(0.1, 1.5, 0.1),
+      Math.random() * getRandomFromRange(0.1, 1.5, 0.1)
+    );
+
+    let randomParticle = getRandomFromArray(particleTypes)
     this.particle = new randomParticle(this);
 
-    this.velocity = !this.particle.moves
-      ? null
-      : new Vector(
-        (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 0.7),
-        (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 0.7)
-      );
-
-    this.particle.init();
+    // Validate the particle is allowed. This can be sued to make sure only a max amount
+    // of one particular type is allowed to be drawn.
+    while(!this.particle.init()) {
+      randomParticle = getRandomFromArray(particleTypes)
+      this.particle = new randomParticle(this);
+    }
   }
 
   /**
    *
    * @return {*}
    */
-  update () {
-
-    if(this.velocity) {
-      this.coords.increase(this.velocity)
-    }
-
-    this.particle.update();
-    return this.withinBounds()
+  update (scrollDirection) {
+    this.particle.update(scrollDirection);
+    return this.withinBounds();
   }
 
   /**
    *
    */
   draw () {
+    this.context.save();
+    this.context.translate(this.coords.x, this.coords.y);
     this.particle.draw();
-    this.context.stroke()
-    this.context.restore()
+    this.context.restore();
   }
 
   /**

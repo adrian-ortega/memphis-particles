@@ -61,11 +61,9 @@ module.exports = {
     },
     plugins: [
         new BrowserSyncPlugin({
-            proxy: 'memphis-particles.local',
-            ghostMode: false,
-            files: []
+            server: path.resolve(__dirname, '../dist')
         }, {
-            injectCss: true
+            injectCss: true,
         }),
         new MiniCssExtractPlugin({
             filename: 'styles/[name].css',

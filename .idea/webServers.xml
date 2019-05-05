@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ca4d0abf-2783-43ce-b1d6-863defb8f926" name="AOD" url="http://ftp.aortegadesign.com">
+        <fileTransfer host="ftp.aortegadesign.com" port="21" rootFolder="/subdomains/dev.aortegadesign.com/wwwroot/memphis">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

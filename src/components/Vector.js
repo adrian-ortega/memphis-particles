@@ -4,12 +4,20 @@ export default class Vector {
     this.y = y;
   }
 
+  /**
+   * @param {Vector} vector
+   */
   increase (vector) {
-    if(vector instanceof Vector) {
+    if(vector && vector instanceof Vector) {
       this.x += vector.x;
       this.y += vector.y;
     }
+  }
 
-    return this;
+  decrease (vector) {
+    if(vector && vector instanceof Vector) {
+      this.x -= vector.x;
+      this.y -= vector.y;
+    }
   }
 }
